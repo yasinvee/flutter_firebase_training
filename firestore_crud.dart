@@ -375,16 +375,25 @@ class _infoDeleteState extends State<infoDelete> {
     var key = field.text;
 
     try {
-      firestore.collection("users").doc(userUid).update({key: FieldValue.delete()}).then(
-          (value) => Navigator.pushReplacementNamed(context, "/infopage"));
+      firestore
+          .collection("users")
+          .doc(userUid)
+          .update({key: FieldValue.delete()}).then(
+              (value) => Navigator.pushReplacementNamed(context, "/infopage"));
     } catch (e) {
       print(e);
     }
   }
 
   void detectKeyChange(value) {
+    var text = field.text.toLowerCase();
+
     setState(() {
-      if (value != null) isVisible = true;
+      if (text == "username" || text == "age" || text == "education" ) {
+        isVisible = true;
+      } else {
+        isVisible = false;
+      }
     });
   }
 }
