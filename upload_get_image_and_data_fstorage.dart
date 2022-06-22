@@ -1,3 +1,5 @@
+//SIMPLE SIGN UP FORM
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -242,13 +244,11 @@ class homePage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
-            return Column(
-              children: [
-                Text(data["name"]),
-                Text(data["age"].toString()),
-                Image.network(data["profile_image"])
-              ]
-            );
+            return Column(children: [
+              Text(data["name"]),
+              Text(data["age"].toString()),
+              Image.network(data["profile_image"])
+            ]);
           }
 
           return Text("loading");
