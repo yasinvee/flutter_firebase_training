@@ -124,7 +124,9 @@ class _signUpPageState extends State<signUpPage> {
     setState(() {
       labelText = "Uploading Data";
     });
-    createAccount();
+    Future.wait(
+      createAccount(),
+    );
   }
 
   Future<void> createAccount() async {
@@ -242,13 +244,11 @@ class homePage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
-            return Column(
-              children: [
-                Text(data["name"]),
-                Text(data["age"].toString()),
-                Image.network(data["profile_image"])
-              ]
-            );
+            return Column(children: [
+              Text(data["name"]),
+              Text(data["age"].toString()),
+              Image.network(data["profile_image"])
+            ]);
           }
 
           return Text("loading");
